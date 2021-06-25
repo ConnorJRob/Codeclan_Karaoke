@@ -8,7 +8,10 @@ class Room:
         self.soundtrack = []
 
     def check_in_guest(self,guest):
-        self.guests_in_room.append(guest)
+        if len(self.guests_in_room) == self.capacity:
+            return "I'm sorry, this room is at full capacity"
+        else:
+            self.guests_in_room.append(guest)
 
     def add_song_to_room_soundtrack(self,song):
         self.soundtrack.append(song)
@@ -21,6 +24,5 @@ class Room:
     def check_out_guest(self, guest_name):
         self.guests_in_room.remove(self.find_guest_by_name_in_room(guest_name))
 
-    def check_out_all_guests_in_room(self, room):
+    def check_out_all_guests_in_room(self):
         self.guests_in_room.clear()
-        
