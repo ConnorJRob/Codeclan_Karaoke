@@ -7,6 +7,7 @@ class TestRoom(unittest.TestCase):
 
     def setUp(self):
         self.room1 = Room(1, 6)
+        self.room2 = Room(1, 3)
 
     def test_room_has_number(self):
         #This test checks that given the Room object created above, the room.name property has been correctly setup matching 1
@@ -55,6 +56,8 @@ class TestRoom(unittest.TestCase):
         self.assertEqual("Thor", searched_guest.name)
 
     def test_check_out_guest(self):
+        #This test checks that the check_out_guest function is working correctly, when given a name string it uses the find_guest_by_name_in_room function to locate a matching guest, then removes them from
+        ## the guests_in_room list
         guest_1 = Guest("Loki")
         guest_2 = Guest("Thor")
         self.room1.check_in_guest(guest_1)
@@ -71,5 +74,18 @@ class TestRoom(unittest.TestCase):
         self.room1.check_in_guest(guest_3)
         self.room1.check_out_all_guests_in_room()
         self.assertEqual(0, len(self.room1.guests_in_room))
+
+    def test_room_will_not_go_over_capacity(self):
+        guest_1 = Guest("Loki")
+        guest_2 = Guest("Thor")
+        guest_3 = Guest("Odin")
+        guest_4 = Guest("Tyr")
+        self.room2.check_in_guest(guest_1)
+        self.room2.check_in_guest(guest_2)
+        self.room2.check_in_guest(guest_3)
+        self.room2.check_in_guest(guest_4)
+        self.assertEqual(3, len(self.room2.guests_in_room))
+        self.assertEqual("I'm sorry, this room is at full capacity", self.room2.check_in_guest(guest_4))
+
 
     
