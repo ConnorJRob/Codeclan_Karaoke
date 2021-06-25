@@ -23,3 +23,4 @@ class Room:
 
     def check_out_all_guests_in_room(self, room):
         self.guests_in_room.clear()
+        
