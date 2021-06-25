@@ -102,6 +102,8 @@ class TestRoom(unittest.TestCase):
         self.assertEqual([],self.room1.guests_in_room)
 
     def test_if_guest_celebrates_that_room_has_their_song(self):
+        #This test checks that the check_in_guest function returns the string "Awesome, this room has my favourite song!" if the room the guest is checking into has their favourite song 
+            #on the soundtrack - in addition to adding them to the guest_list and taking their entry fee
         guest_1 = Guest("Thor", 12.00, "The Eye of the Tiger")
         song_1 = Song("The Eye of the Tiger")
         song_2 = Song("It's my life")
