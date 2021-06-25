@@ -23,3 +23,13 @@ class TestRoom(unittest.TestCase):
     def test_room_starts_with_no_songs_in_track(self):
         #This test checks that given the Room object created above, the room.guests_in_room property has been correctly setup as an empty list
         self.assertEqual([], self.room1.soundtrack)
+
+    def test_room_can_check_in_guests(self):
+        #This test checks that the check_in_guest() function is working correctly, by appending a guest object onto the guests in room list
+        Guest_1 = Guest("Loki")
+        Guest_2 = Guest("Thor")
+        self.room1.check_in_guest(Guest_1)
+        self.room1.check_in_guest(Guest_2)
+        self.assertEqual(2, len(self.room1.guests_in_room))
+        self.assertEqual("Loki", self.room1.guests_in_room[0].name)
+        self.assertEqual("Thor", self.room1.guests_in_room[1].name)

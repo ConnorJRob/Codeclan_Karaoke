@@ -6,3 +6,6 @@ class Room:
         self.capacity = capacity
         self.guests_in_room = []
         self.soundtrack = []
+
+    def check_in_guest(self,guest):
+        self.guests_in_room.append(guest)
