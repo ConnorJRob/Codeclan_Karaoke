@@ -6,8 +6,8 @@ from src.song import *
 class TestRoom(unittest.TestCase):
 
     def setUp(self):
-        self.room1 = Room(1, 6)
-        self.room2 = Room(1, 3)
+        self.room1 = Room(1, 6, 4.00)
+        self.room2 = Room(1, 3, 5.00)
 
     def test_room_has_number(self):
         #This test checks that given the Room object created above, the room.name property has been correctly setup matching 1

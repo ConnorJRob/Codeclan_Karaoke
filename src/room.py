@@ -1,11 +1,12 @@
 import pdb
 
 class Room:
-    def __init__(self,room_number, capacity):
+    def __init__(self,room_number, capacity, entry_fee):
         self.room_number = room_number
         self.capacity = capacity
         self.guests_in_room = []
         self.soundtrack = []
+        self.entry_fee = entry_fee
 
     def check_in_guest(self,guest):
         if len(self.guests_in_room) == self.capacity:
