@@ -18,8 +18,8 @@ class Room:
             if guest.name == guest_name:
                 return guest
 
-    # def check_out_gest(self, guest):
-    #     pass
+    def check_out_guest(self, guest_name):
+        self.guests_in_room.remove(self.find_guest_by_name_in_room(guest_name))
 
-    # def check_out_all_guests_in_room(self, room):
-    #     pass
+    def check_out_all_guests_in_room(self, room):
+        self.guests_in_room.clear()
