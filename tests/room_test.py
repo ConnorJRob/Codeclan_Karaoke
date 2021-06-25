@@ -27,8 +27,8 @@ class TestRoom(unittest.TestCase):
 
     def test_room_can_check_in_guests(self):
         #This test checks that the check_in_guest() function is working correctly, by appending a guest object onto the guests in room list
-        guest_1 = Guest("Loki")
-        guest_2 = Guest("Thor")
+        guest_1 = Guest("Loki", 15.00)
+        guest_2 = Guest("Thor", 20.00)
         self.room1.check_in_guest(guest_1)
         self.room1.check_in_guest(guest_2)
         self.assertEqual(2, len(self.room1.guests_in_room))
@@ -48,8 +48,8 @@ class TestRoom(unittest.TestCase):
     def test_find_guest_by_name_in_room(self):
         #This test checks the function find_guest_by_name_in_room which will be called by other functions, the function should take a string and if this matches a guest.name property that is
         ##curretly in the room.guests_in_room[] list then it returns that guest object
-        guest_1 = Guest("Loki")
-        guest_2 = Guest("Thor")
+        guest_1 = Guest("Loki", 15.00)
+        guest_2 = Guest("Thor", 20.00)
         self.room1.check_in_guest(guest_1)
         self.room1.check_in_guest(guest_2)
         searched_guest = self.room1.find_guest_by_name_in_room("Thor")
@@ -58,17 +58,18 @@ class TestRoom(unittest.TestCase):
     def test_check_out_guest(self):
         #This test checks that the check_out_guest function is working correctly, when given a name string it uses the find_guest_by_name_in_room function to locate a matching guest, then removes them from
         ## the guests_in_room list
-        guest_1 = Guest("Loki")
-        guest_2 = Guest("Thor")
+        guest_1 = Guest("Loki", 15.00)
+        guest_2 = Guest("Thor", 20.00)
         self.room1.check_in_guest(guest_1)
         self.room1.check_in_guest(guest_2)
         self.room1.check_out_guest("Thor")
         self.assertEqual(1, len(self.room1.guests_in_room))
 
     def test_check_out_all_guests_in_room(self):
-        guest_1 = Guest("Loki")
-        guest_2 = Guest("Thor")
-        guest_3 = Guest("Odin")
+        #This test checks that the check_out_all_guests_in_room() function is working correctly, when this is called for a room, it clears the entire guests_in_room list
+        guest_1 = Guest("Loki", 15.00)
+        guest_2 = Guest("Thor", 20.00)
+        guest_3 = Guest("Odin", 19.00)
         self.room1.check_in_guest(guest_1)
         self.room1.check_in_guest(guest_2)
         self.room1.check_in_guest(guest_3)
@@ -76,10 +77,11 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(0, len(self.room1.guests_in_room))
 
     def test_room_will_not_go_over_capacity(self):
-        guest_1 = Guest("Loki")
-        guest_2 = Guest("Thor")
-        guest_3 = Guest("Odin")
-        guest_4 = Guest("Tyr")
+        #This test checks that the updated "check_in_guest" functionality is working - t checks if the room is at the established capacity, if so it returns a string and does not append the guest
+        guest_1 = Guest("Loki", 15.00)
+        guest_2 = Guest("Thor", 20.00)
+        guest_3 = Guest("Odin", 19.00)
+        guest_4 = Guest("Tyr", 13.00)
         self.room2.check_in_guest(guest_1)
         self.room2.check_in_guest(guest_2)
         self.room2.check_in_guest(guest_3)
