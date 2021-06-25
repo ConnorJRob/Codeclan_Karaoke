@@ -77,7 +77,7 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(0, len(self.room1.guests_in_room))
 
     def test_room_will_not_go_over_capacity(self):
-        #This test checks that the updated "check_in_guest" functionality is working - t checks if the room is at the established capacity, if so it returns a string and does not append the guest
+        #This test checks that the updated "check_in_guest" functionality is working - it checks if the room is at the established capacity, if so it returns a string and does not append the guest
         guest_1 = Guest("Loki", 15.00)
         guest_2 = Guest("Thor", 20.00)
         guest_3 = Guest("Odin", 19.00)
@@ -90,10 +90,12 @@ class TestRoom(unittest.TestCase):
         self.assertEqual("I'm sorry, this room is at full capacity", self.room2.check_in_guest(guest_4))
 
     def test_check_guest_in_and_take_payment(self):
+        #This test checks that the guests wallet reduces by the entry fee value of the room they are checking into
         guest_1 = Guest("Loki", 15.00)
         self.room2.check_in_guest(guest_1)
         self.assertEqual(10, guest_1.wallet)
 
     def test_deny_guest_check_in_due_to_insufficient_funds(self):
+        #This test checks that if the guest has insufficient funds to pay the entry fee, they are not checked in and it instead returns a failure string
         guest_1 = Guest("Thor", 4.00)
         self.assertEqual("I'm sorry, you do not have sufficient funds to pay the entry fee", self.room2.check_in_guest(guest_1))
