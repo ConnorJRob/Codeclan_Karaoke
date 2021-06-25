@@ -19,6 +19,12 @@ class Room:
         #If the guest had sufficient funds and there was space in the room for them, they are added to the room list and their entry fee is taken
             self.guests_in_room.append(guest)
             guest.guest_pay_entry_fee(self)
+            ## I originally tried adding this for-loop on to the end of the check-in function so that if at the point of check-in a room soundtrack included the guests
+                ## favourite song the function would return the below string in addition to adding them to the room and taking their entry fee, not sure why this didn't work
+                    ## I suspect because perhaps a function can't take actions AND return something else? So i've made this it's own function
+            for song in self.soundtrack:
+                if song.song_name == guest.favourite_song:
+                    return "Awesome, this room has my favourite song!"
 
     def add_song_to_room_soundtrack(self,song):
         #The song specified is added to the rooms soundtrack
@@ -37,3 +43,8 @@ class Room:
     def check_out_all_guests_in_room(self):
         #Function checks all guests out of the room by calling the .clear() method on the guests_in_room list
         self.guests_in_room.clear()
+
+    # def let_guest_see_playlist(self, guest):
+    #     for song in self.soundtrack:
+    #         if song.song_name == guest.favourite_song:
+    #             return "Awesome, this room has my favourite song!"

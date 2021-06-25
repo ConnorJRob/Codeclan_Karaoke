@@ -100,3 +100,15 @@ class TestRoom(unittest.TestCase):
         guest_1 = Guest("Thor", 4.00, "The Eye of the Tiger")
         self.assertEqual("I'm sorry, you do not have sufficient funds to pay the entry fee", self.room2.check_in_guest(guest_1))
         self.assertEqual([],self.room1.guests_in_room)
+
+    def test_if_guest_celebrates_that_room_has_their_song(self):
+        guest_1 = Guest("Thor", 12.00, "The Eye of the Tiger")
+        song_1 = Song("The Eye of the Tiger")
+        song_2 = Song("It's my life")
+        self.room1.add_song_to_room_soundtrack(song_1)
+        self.room1.add_song_to_room_soundtrack(song_2)
+        result = self.room1.check_in_guest(guest_1)
+        self.assertEqual("Awesome, this room has my favourite song!", result)
+        self.assertEqual(1, len(self.room1.guests_in_room))
+        self.assertEqual(8, guest_1.wallet)
+
