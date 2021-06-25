@@ -9,10 +9,13 @@ class Room:
         self.entry_fee = entry_fee
 
     def check_in_guest(self,guest):
-        if len(self.guests_in_room) == self.capacity:
+        if guest.wallet < self.entry_fee:
+            return "I'm sorry, you do not have sufficient funds to pay the entry fee"
+        elif len(self.guests_in_room) == self.capacity:
             return "I'm sorry, this room is at full capacity"
         else:
             self.guests_in_room.append(guest)
+            guest.guest_pay_entry_fee(self)
 
     def add_song_to_room_soundtrack(self,song):
         self.soundtrack.append(song)

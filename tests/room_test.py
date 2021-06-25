@@ -89,5 +89,11 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(3, len(self.room2.guests_in_room))
         self.assertEqual("I'm sorry, this room is at full capacity", self.room2.check_in_guest(guest_4))
 
+    def test_check_guest_in_and_take_payment(self):
+        guest_1 = Guest("Loki", 15.00)
+        self.room2.check_in_guest(guest_1)
+        self.assertEqual(10, guest_1.wallet)
 
-    
+    def test_deny_guest_check_in_due_to_insufficient_funds(self):
+        guest_1 = Guest("Thor", 4.00)
+        self.assertEqual("I'm sorry, you do not have sufficient funds to pay the entry fee", self.room2.check_in_guest(guest_1))

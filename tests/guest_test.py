@@ -13,6 +13,7 @@ class TestGuest(unittest.TestCase):
         self.assertEqual("Loki", self.guest_1.name)
 
     def test_guest_has_wallet(self):
+        #This test checks that given the Guest object created above, the guest.wallet property has been correctly setup matching 15.00
         self.assertEqual(15.00, self.guest_1.wallet)
 
     def test_guest_pays_entry_fee(self):
