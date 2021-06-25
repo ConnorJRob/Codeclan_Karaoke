@@ -61,3 +61,13 @@ class TestRoom(unittest.TestCase):
         self.room1.check_in_guest(guest_2)
         self.room1.check_out_guest("Thor")
         self.assertEqual(1, len(self.room1.guests_in_room))
+
+    def check_out_all_guests_in_room(self):
+        guest_1 = Guest("Loki")
+        guest_2 = Guest("Thor")
+        guest_3 = Guest("Odin")
+        self.room1.check_in_guest(guest_1)
+        self.room1.check_in_guest(guest_2)
+        self.room1.check_in_guest(guest_3)
+        self.room1.check_out_all_guests_in_room()
+        self.assertEqual(0, len(self.room1.guests_in_room))
