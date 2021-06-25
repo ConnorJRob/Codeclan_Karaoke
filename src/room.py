@@ -5,3 +5,4 @@ class Room:
         self.room_number = room_number
         self.capacity = capacity
         self.guests_in_room = []
+        self.soundtrack = []
