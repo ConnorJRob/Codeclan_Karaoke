@@ -35,7 +35,7 @@ class TestRoom(unittest.TestCase):
         self.assertEqual("Thor", self.room1.guests_in_room[1].name)
 
     def test_room_can_add_songs_to_soundtrack(self):
-        #This test checks that the check_in_guest() function is working correctly, by appending a guest object onto the guests in room list
+        #This test checks that add_song_to_room_soundtrack() function is working correctly, by appending a song object onto the soundtrack list
         song_1 = Song("The Eye of the Tiger")
         song_2 = Song("It's my life")
         self.room1.add_song_to_room_soundtrack(song_1)
@@ -43,3 +43,13 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(2, len(self.room1.soundtrack))
         self.assertEqual("The Eye of the Tiger", self.room1.soundtrack[0].song_name)
         self.assertEqual("It's my life", self.room1.soundtrack[1].song_name)
+
+    def test_find_guest_by_name_in_room(self):
+        #This test checks the function find_guest_by_name_in_room which will be called by other functions, the function should take a string and if this matches a guest.name property that is
+        ##curretly in the room.guests_in_room[] list then it returns that guest object
+        guest_1 = Guest("Loki")
+        guest_2 = Guest("Thor")
+        self.room1.check_in_guest(guest_1)
+        self.room1.check_in_guest(guest_2)
+        searched_guest = self.room1.find_guest_by_name_in_room("Thor")
+        self.assertEqual("Thor", searched_guest.name)

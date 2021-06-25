@@ -12,3 +12,14 @@ class Room:
 
     def add_song_to_room_soundtrack(self,song):
         self.soundtrack.append(song)
+
+    def find_guest_by_name_in_room(self,guest_name):
+        for guest in self.guests_in_room:
+            if guest.name == guest_name:
+                return guest
+
+    # def check_out_gest(self, guest):
+    #     pass
+
+    # def check_out_all_guests_in_room(self, room):
+    #     pass
