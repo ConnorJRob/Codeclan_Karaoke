@@ -99,7 +99,7 @@ class TestRoom(unittest.TestCase):
         #This test checks that if the guest has insufficient funds to pay the entry fee, they are not checked in and it instead returns a failure string
         guest_1 = Guest("Thor", 4.00, "The Eye of the Tiger")
         self.assertEqual("I'm sorry, you do not have sufficient funds to pay the entry fee", self.room2.check_in_guest(guest_1))
-        self.assertEqual([],self.room1.guests_in_room)
+        self.assertEqual([],self.room2.guests_in_room)
 
     def test_if_guest_celebrates_that_room_has_their_song(self):
         #This test checks that the check_in_guest function returns the string "Awesome, this room has my favourite song!" if the room the guest is checking into has their favourite song 
